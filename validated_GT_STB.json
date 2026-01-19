@@ -1,0 +1,794 @@
+{
+    "gt_file_name": "28c73b87-5f35-5699-aafc-ac707575791f",
+    "prompt": "\n        You are an expert in analyzing database structures and data validation rules.\n        Your task is to identify and suggest validation rules or constraints for each column of a given table, based on the provided data dictionary and the table's context.\n        \n        Dataset Overview:\n        {'rows': 5000, 'number of columns': 31, 'column_names': Index(['dc_ott_appname', 'd_system_app_flag', 'old_system_app_flag',\n       'dc_model', 'bucket_0to1_mou', 'bucket_1to2_mou', 'bucket_2to3_mou',\n       'bucket_3to4_mou', 'bucket_4to5_mou', 'bucket_5to6_mou',\n       'bucket_6to7_mou', 'bucket_7to8_mou', 'bucket_8to9_mou',\n       'bucket_9to10_mou', 'bucket_10to11_mou', 'bucket_11to12_mou',\n       'bucket_12to13_mou', 'bucket_13to14_mou', 'bucket_14to15_mou',\n       'bucket_15to16_mou', 'bucket_16to17_mou', 'bucket_17to18_mou',\n       'bucket_18to19_mou', 'bucket_19to20_mou', 'bucket_20to21_mou',\n       'bucket_21to22_mou', 'bucket_22to23_mou', 'bucket_23to24_mou',\n       'd_app_pkg', 'gis_jp_id', 'partition_date'],\n      dtype='object'), 'aboutdata': 'This is set top box data set of jio telecommunication, jio fiber customers.'}\n        Here is the data dictionary: \n        {'dc_ott_appname': {'data_type': 'string', 'data_description': 'Name of the Over-The-Top (OTT) application used on the set-top box'}, 'd_system_app_flag': {'data_type': 'string', 'data_description': 'Flag indicating if the application is part of the system (yes) or not (no)'}, 'old_system_app_flag': {'data_type': 'string', 'data_description': 'Flag indicating if the application is an old system application (yes) or not (no)'}, 'dc_model': {'data_type': 'string', 'data_description': 'Model of the set-top box'}, 'bucket_0to1_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 00:00 and 01:00'}, 'bucket_1to2_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 01:00 and 02:00'}, 'bucket_2to3_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 02:00 and 03:00'}, 'bucket_3to4_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 03:00 and 04:00'}, 'bucket_4to5_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 04:00 and 05:00'}, 'bucket_5to6_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 05:00 and 06:00'}, 'bucket_6to7_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 06:00 and 07:00'}, 'bucket_7to8_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 07:00 and 08:00'}, 'bucket_8to9_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 08:00 and 09:00'}, 'bucket_9to10_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 09:00 and 10:00'}, 'bucket_10to11_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 10:00 and 11:00'}, 'bucket_11to12_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 11:00 and 12:00'}, 'bucket_12to13_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 12:00 and 13:00'}, 'bucket_13to14_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 13:00 and 14:00'}, 'bucket_14to15_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 14:00 and 15:00'}, 'bucket_15to16_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 15:00 and 16:00'}, 'bucket_16to17_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 16:00 and 17:00'}, 'bucket_17to18_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 17:00 and 18:00'}, 'bucket_18to19_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 18:00 and 19:00'}, 'bucket_19to20_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 19:00 and 20:00'}, 'bucket_20to21_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 20:00 and 21:00'}, 'bucket_21to22_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 21:00 and 22:00'}, 'bucket_22to23_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 22:00 and 23:00'}, 'bucket_23to24_mou': {'data_type': 'float', 'data_description': 'Average minutes of use (MOU) for the application between 23:00 and 00:00'}, 'd_app_pkg': {'data_type': 'string', 'data_description': 'Package name or identifier of the application'}, 'gis_jp_id': {'data_type': 'string', 'data_description': 'Geographic or regional identifier for the area the set-top box is located in'}, 'partition_date': {'data_type': 'string', 'data_description': 'Date of the data partition, formatted as dd/mm/yy'}}\n\n        Here is sample of dataset:\n        dc_ott_appname,d_system_app_flag,old_system_app_flag,dc_model,bucket_0to1_mou,bucket_1to2_mou,bucket_2to3_mou,bucket_3to4_mou,bucket_4to5_mou,bucket_5to6_mou,bucket_6to7_mou,bucket_7to8_mou,bucket_8to9_mou,bucket_9to10_mou,bucket_10to11_mou,bucket_11to12_mou,bucket_12to13_mou,bucket_13to14_mou,bucket_14to15_mou,bucket_15to16_mou,bucket_16to17_mou,bucket_17to18_mou,bucket_18to19_mou,bucket_19to20_mou,bucket_20to21_mou,bucket_21to22_mou,bucket_22to23_mou,bucket_23to24_mou,d_app_pkg,gis_jp_id,partition_date\nHotstar,no,no,JHSB200,0.0,2.383333333,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,in.startv.hotstar,,29/06/24\nJioCinema,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.533333333,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,com.jio.media.stb.ondemand,,29/06/24\nVoice Assistant,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.166666667,0.116666667,0.0,0.616666667,0.0,0.0,0.0,2.483333333,14.3,1.216666667,0.0,0,com.android.app.jio.voiceassist,,29/06/24\nJiotv+,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.066666667,0.0,0.0,0.0,0,com.jio.media.stb.ondemand.patchwall,,29/06/24\nJioLauncher,yes,yes,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.4,0.033333333,0.0,0.0,0.0,1.85,0.0,0.0,0.0,2.1,0.0,0.0,1.233333333,0.0,0.0,0.5,0,com.iwedia.ui.rjio.launcher.reliance,,29/06/24\nHotstar,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,in.startv.hotstar,,29/06/24\nZEE5,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,12.18333333,0.0,0.0,0.0,0.0,0,com.zee5.aosp,,29/06/24\nNetflix,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,9.55,1.6,0.0,0.0,1.716666667,0.0,0.0,0.0,0.0,0.0,57.18333333,0.0,0.0,0.0,0,com.netflix.ninja,,29/06/24\nYouTube,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.983333333,0.0,19.71666667,0.0,0.0,0.0,0.0,0.0,0.0,0,com.jio.yt,,29/06/24\nVoice Assistant,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,com.android.app.jio.voiceassist,,29/06/24\n\n\n        Here are the statistical details for each column (mean, standard deviation, minimum, maximum):\n                                 mean        std  min        max\ndc_ott_appname            NaN        NaN  NaN        NaN\nd_system_app_flag         NaN        NaN  NaN        NaN\nold_system_app_flag       NaN        NaN  NaN        NaN\ndc_model                  NaN        NaN  NaN        NaN\nbucket_0to1_mou       1.14192   7.483057  0.0       60.0\nbucket_1to2_mou      0.716957   6.149394  0.0       60.0\nbucket_2to3_mou       0.63378    5.95291  0.0       60.0\nbucket_3to4_mou       0.54944   5.656241  0.0       60.0\nbucket_4to5_mou      0.519187   5.483182  0.0       60.0\nbucket_5to6_mou      0.536117   5.409273  0.0       60.0\nbucket_6to7_mou       0.65688   5.825501  0.0       60.0\nbucket_7to8_mou      1.046087   6.820083  0.0       60.0\nbucket_8to9_mou      1.599263   8.341457  0.0       60.0\nbucket_9to10_mou      1.99217   9.064002  0.0       60.0\nbucket_10to11_mou    2.324007   9.810748  0.0       60.0\nbucket_11to12_mou     2.66107  10.522756  0.0       60.0\nbucket_12to13_mou     2.64065   10.54107  0.0       60.0\nbucket_13to14_mou     2.66684  10.644005  0.0       60.0\nbucket_14to15_mou     2.55646  10.273549  0.0       60.0\nbucket_15to16_mou    2.395043  10.202781  0.0       60.0\nbucket_16to17_mou    2.248123   9.852251  0.0       60.0\nbucket_17to18_mou    2.149293   9.517135  0.0       60.0\nbucket_18to19_mou    2.403753   9.844666  0.0       60.0\nbucket_19to20_mou    2.875657  10.372841  0.0       60.0\nbucket_20to21_mou    3.352877  11.626618  0.0       60.0\nbucket_21to22_mou     2.85371  10.207713  0.0       60.0\nbucket_22to23_mou      1.1921   6.261408  0.0  58.766667\nbucket_23to24_mou         0.0        0.0  0.0        0.0\nd_app_pkg                 NaN        NaN  NaN        NaN\ngis_jp_id                 NaN        NaN  NaN        NaN\npartition_date            NaN        NaN  NaN        NaN\n\n        you need to identify which of the following checks need to be done on each column to ensure data is proper. For each of these checks, functions are already defined which \n        will be called. You just need to identify those checks which are relevant for each column.\n            Include constraints such as:\n        1. **Type Validation**: Confirm that all values match the expected data type.\n        2. **Range Validation**: Define valid minimum and maximum values based on the data description and observed range.\n        3. **Missing Value Handling**: Specify whether missing values are allowed.\n        4. **Unique Constraints**: Identify columns that must have unique values (e.g., IDs).\n        5. **Categorical Restrictions**: Verify if values must belong to a predefined set of categories.\n        6. **Pattern Matching**: For strings, define required patterns (e.g., regex for emails or specific formats like YYYY-MM-DD).\n        7. **Statistical Properties**: Add constraints for numeric columns based on observed statistics (e.g., mean, standard deviation).\n        8. **Outlier Detection**: Specify constraints to identify or remove values significantly deviating from typical data points.\n        9. **Logical Constraints**: Define rules based on relationships or dependencies between columns (e.g., date_of_birth must precede date_of_joining).\n\n        ### Output Format:\n        Provide the output in **strictly pipe-separated format** with two columns: `column_name` and `Validation Rule`. Each row should represent a column and its validation rule(s). Do not create any extra columns. Use a separate row for each rule if a column has multiple rules.\n\n        ### Example of Pipe-Separated Output:\n        column_name | Validation_Rule \n        age | Must be an integer \n        age | Must be between 18 and 100 name  \n        email | Must follow the format [A-Za-z]+ \n        email | Must follow the format\n\n        ### Note:\n        - Do not include additional text, comments, or explanations outside the pipe-separated format.\n        - Ensure that the output is properly aligned for readability.\n        ",
+    "llm_generated": {
+        "rr_crm_device_serial_number": [
+            "Must be a string",
+            "Must have a unique value"
+        ],
+        "rr_crm_device_type": [
+            "Must be a string",
+            "Must be one of the predefined device types (e.g., STB)"
+        ],
+        "rr_crm_customer_activation_date": [
+            "Must be a date",
+            "Must follow the format YYYY-MM-DD"
+        ],
+        "d_customer_paid_flag": [
+            "Must be a string",
+            "Must be one of the predefined status (e.g., paid, migrated)"
+        ],
+        "crm_offer_id": [
+            "Must be a float",
+            "Must be between 1400285.0 and 1406231.0"
+        ],
+        "crm_customer_id": [
+            "Must be a float",
+            "Must be between 1089798371.0 and 7605530015.0"
+        ],
+        "crm_city": [
+            "Must be a string",
+            "Must be a valid city name"
+        ],
+        "crm_district": [
+            "Must be a string",
+            "Must be a valid district name"
+        ],
+        "crm_state": [
+            "Must be a string",
+            "Must be a valid state name"
+        ],
+        "crm_jio_center_id": [
+            "Must be a string",
+            "Must be a valid Jio center identifier"
+        ],
+        "crm_inst_city": [
+            "Must be a string",
+            "Must be a valid city name"
+        ],
+        "crm_inst_district": [
+            "Must be a string",
+            "Must be a valid district name"
+        ],
+        "crm_inst_state": [
+            "Must be a string",
+            "Must be a valid state name"
+        ],
+        "crm_inst_jio_center_id": [
+            "Must be a string",
+            "Must be a valid Jio center identifier"
+        ],
+        "crm_circle_id": [
+            "Must be a string",
+            "Must be a valid telecom circle identifier"
+        ],
+        "crm_product_status": [
+            "Must be a string",
+            "Must be one of the predefined statuses (e.g., active, expired)"
+        ],
+        "crm_product_activation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_cust_catg": [
+            "Must be a float",
+            "Must be between 1.0 and 5.0"
+        ],
+        "crm_customer_creation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_activation_appointment_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "customer_service_id": [
+            "Must be a float",
+            "Must be between 299132000000.0 and 778721000000.0"
+        ],
+        "crm_customer_service_id": [
+            "Must be a float",
+            "Must be between 299132000000.0 and 778721000000.0"
+        ],
+        "crm_voice_service_id": [
+            "Must be a string",
+            "Must be a valid voice service identifier"
+        ],
+        "crm_service_type": [
+            "Must be a string",
+            "Must be a valid service type"
+        ],
+        "crm_service_last_modified_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_msisdn": [
+            "Must be a string",
+            "Must follow the valid MSISDN format"
+        ],
+        "crm_imsi_number": [
+            "Must be a string",
+            "Must follow the valid IMSI format"
+        ],
+        "crm_product_name": [
+            "Must be a string",
+            "Must be a valid product name"
+        ],
+        "manually_onboarded": [
+            "Must be a string",
+            "Must be one of the predefined flags (e.g., True/False)"
+        ],
+        "d_customer_product_type": [
+            "Must be a string",
+            "Must be a valid product type"
+        ],
+        "d_customer_creation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "d_product_activation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "cc_transaction_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "cc_plan_id": [
+            "Must be a float",
+            "Must be between 1011508.0 and 1018436.0"
+        ],
+        "s_plan_name": [
+            "Must be a string",
+            "Must be a valid plan name"
+        ],
+        "s_plan_type": [
+            "Must be a string",
+            "Must be a valid plan type"
+        ],
+        "cc_latest_recharge_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "cc_latest_recharge_validity": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "d_plan_status": [
+            "Must be a string",
+            "Must be one of the predefined statuses (e.g., active, expired)"
+        ],
+        "gis_building_id": [
+            "Must be a string",
+            "Must be a valid building identifier"
+        ],
+        "gis_ujp_sap_id": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_r4g_state": [
+            "Must be of String type",
+            "Must belong to a predefined list of state names"
+        ],
+        "gis_city": [
+            "Must be of String type",
+            "Must belong to a predefined list of city names"
+        ],
+        "gis_jiocentre_code": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_fsa_id": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_building_category_tpsg": [
+            "Must be of String type",
+            "Must belong to a predefined list of categories"
+        ],
+        "gis_ont_serial_number": [
+            "Must be of String type"
+        ],
+        "oltponport": [
+            "Must be of String type"
+        ],
+        "oltneid": [
+            "Must be of String type"
+        ],
+        "east_side_neighbor_neid": [
+            "Must be of String type"
+        ],
+        "west_side_neighbor_neid": [
+            "Must be of String type"
+        ],
+        "s2outport": [
+            "Must be of String type"
+        ],
+        "s2neid": [
+            "Must be of String type"
+        ],
+        "s1outport": [
+            "Must be of String type"
+        ],
+        "s1neid": [
+            "Must be of String type"
+        ],
+        "acs_ont_cpe_updated": [
+            "Must be of DateTime type"
+        ],
+        "acs_ont_flag_updated_created": [
+            "Must be of Float type",
+            "Must be between 0 and 4 (based on logical constraint and observed max)"
+        ],
+        "acs_ont_model": [
+            "Must be of String type"
+        ],
+        "acs_ont_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_ont_product": [
+            "Must be of String type"
+        ],
+        "acs_odu_serial_number": [
+            "Must be of String type"
+        ],
+        "acs_odu_cpe_updated": [
+            "Must be of DateTime type"
+        ],
+        "acs_odu_product": [
+            "Must be of String type"
+        ],
+        "acs_odu_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_odu_model": [
+            "Must be of String type"
+        ],
+        "acs_odu_flag_updated_created": [
+            "Must be of Float type"
+        ],
+        "dc_stb_serial_number": [
+            "Must be of String type"
+        ],
+        "dc_stb_duration_in_min": [
+            "Must be of Float type",
+            "Must be between 0 and 1240.25 (based on observed max)"
+        ],
+        "dc_stb_app": [
+            "Must be of String type"
+        ],
+        "version_code": [
+            "Must be of Integer type",
+            "Must be between 1 and 606016181 (based on observed max and logical constraint)"
+        ],
+        "adc_library_version": [
+            "Must be of Integer type",
+            "Must be between 2106011852 and 2122401100 (based on observed min and max)"
+        ],
+        "host_application_version": [
+            "Must be of Integer type",
+            "Must be between 2106011933 and 2122401100 (based on observed min and max)"
+        ],
+        "adc_library_version_name": [
+            "Must be of String type"
+        ],
+        "app_hour_bucket": [
+            "Must be of String type"
+        ],
+        "dc_stb_event_date": [
+            "Must be of Date type"
+        ],
+        "acs_stb_model": [
+            "Must be of String type"
+        ],
+        "acs_stb_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_stb_product": [
+            "Must be of String type"
+        ],
+        "dc_stb_app_pkg": [
+            "Must be of String type"
+        ],
+        "insert_date": [
+            "Must be of Date type"
+        ],
+        "dc_ott_appname": [
+            "Must be a string "
+        ],
+        "d_system_app_flag": [
+            "Must be a string ",
+            "Must be either 'yes' or 'no' "
+        ],
+        "old_system_app_flag": [
+            "Must be a string ",
+            "Must be either 'yes' or 'no' "
+        ],
+        "dc_model": [
+            "Must be a string "
+        ],
+        "bucket_0to1_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_1to2_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_2to3_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_3to4_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_4to5_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_5to6_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_6to7_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_7to8_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_8to9_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_9to10_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_10to11_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_11to12_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_12to13_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_13to14_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_14to15_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_15to16_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_16to17_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_17to18_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_18to19_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_19to20_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_20to21_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_21to22_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_22to23_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 60.0 "
+        ],
+        "bucket_23to24_mou": [
+            "Must be a float ",
+            "Must be between 0.0 and 0.0 "
+        ],
+        "d_app_pkg": [
+            "Must be a string "
+        ],
+        "gis_jp_id": [
+            "Must be a string "
+        ],
+        "partition_date": [
+            "Must be a string ",
+            "Must follow the format dd/mm/yy"
+        ]
+    },
+    "input_gt": {},
+    "human_edited_gt": {
+        "rr_crm_device_serial_number": [
+            "Must be a string",
+            "Must have a unique value",
+            "Must not be null"
+        ],
+        "rr_crm_device_type": [
+            "Must be a string",
+            "Must be one of the predefined device types (e.g., STB)"
+        ],
+        "rr_crm_customer_activation_date": [
+            "Must be a date",
+            "Must follow the format DD-MM-YYYY"
+        ],
+        "d_customer_paid_flag": [
+            "Must be a string",
+            "Must be one of the predefined status (e.g., paid, migrated)"
+        ],
+        "crm_offer_id": [
+            "Must be a integer"
+        ],
+        "crm_customer_id": [
+            "Must be a integer",
+            "Must not be null"
+        ],
+        "crm_city": [
+            "Must be a string",
+            "Must be a valid city name"
+        ],
+        "crm_district": [
+            "Must be a string",
+            "Must be a valid district name"
+        ],
+        "crm_state": [
+            "Must be a string",
+            "Must be a valid state name"
+        ],
+        "crm_jio_center_id": [
+            "Must be a string"
+        ],
+        "crm_inst_city": [
+            "Must be a string",
+            "Must be a valid city name"
+        ],
+        "crm_inst_district": [
+            "Must be a string",
+            "Must be a valid district name"
+        ],
+        "crm_inst_state": [
+            "Must be a string",
+            "Must be a valid state name"
+        ],
+        "crm_inst_jio_center_id": [
+            "Must be a string",
+            "Must be a valid Jio center identifier"
+        ],
+        "crm_circle_id": [
+            "Must be a string",
+            "Must be a valid telecom circle identifier"
+        ],
+        "crm_product_status": [
+            "Must be a string",
+            "Must be in set [Z020,Z040,Z070,Z000] "
+        ],
+        "crm_product_activation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_cust_catg": [
+            "Must be a integer"
+        ],
+        "crm_customer_creation_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_activation_appointment_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "customer_service_id": [
+            "Must be a float"
+        ],
+        "crm_customer_service_id": [
+            "Must be a float"
+        ],
+        "crm_voice_service_id": [
+            "Must be a string"
+        ],
+        "crm_service_type": [
+            "Must be a string",
+            "Must be in set [Z00005,Z0182,Z0029]"
+        ],
+        "crm_service_last_modified_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "crm_msisdn": [
+            "Must be a string"
+        ],
+        "crm_imsi_number": [
+            "Must be a string"
+        ],
+        "crm_product_name": [
+            "Must be a string",
+            "Must be a valid product name"
+        ],
+        "manually_onboarded": [
+            "Must be a string"
+        ],
+        "d_customer_product_type": [
+            "Must be a string",
+            "Must be in set [AirFiber-UBR-Test,AirFiber-UBR]"
+        ],
+        "d_customer_creation_date": [
+            "Must be a date",
+            "Must follow the format DD-MM-YYYY"
+        ],
+        "d_product_activation_date": [
+            "Must be a date",
+            "Must follow the format DD-MM-YYYY"
+        ],
+        "cc_transaction_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "cc_plan_id": [
+            "Must be a float"
+        ],
+        "s_plan_name": [
+            "Must be a string",
+            "Must be a valid plan name"
+        ],
+        "s_plan_type": [
+            "Must be a string",
+            "Must be in set [BASEPLAN/POSTPAID,CONNECTIVITY RECHARGE,CONNECTIVITY ADDON]"
+        ],
+        "cc_latest_recharge_date": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "cc_latest_recharge_validity": [
+            "Must be a datetime",
+            "Must follow the format YYYY-MM-DDTHH:MM:SS.sss+Z"
+        ],
+        "d_plan_status": [
+            "Must be a string",
+            "Must be one of the predefined statuses (e.g., active, expired)"
+        ],
+        "gis_building_id": [
+            "Must be a string"
+        ],
+        "gis_ujp_sap_id": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_r4g_state": [
+            "Must be of String type",
+            "Must belong to a predefined list of state names"
+        ],
+        "gis_city": [
+            "Must be of String type",
+            "Must belong to a predefined list of city names"
+        ],
+        "gis_jiocentre_code": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_fsa_id": [
+            "Must be of String type",
+            "Must have a unique value for each record"
+        ],
+        "gis_building_category_tpsg": [
+            "Must be of String type",
+            "Must belong to a predefined list of categories"
+        ],
+        "gis_ont_serial_number": [
+            "Must be of String type"
+        ],
+        "oltponport": [
+            "Must be of String type"
+        ],
+        "oltneid": [
+            "Must be of String type"
+        ],
+        "east_side_neighbor_neid": [
+            "Must be of String type"
+        ],
+        "west_side_neighbor_neid": [
+            "Must be of String type"
+        ],
+        "s2outport": [
+            "Must be of String type"
+        ],
+        "s2neid": [
+            "Must be of String type"
+        ],
+        "s1outport": [
+            "Must be of String type"
+        ],
+        "s1neid": [
+            "Must be of String type"
+        ],
+        "acs_ont_cpe_updated": [
+            "Must be of DateTime type"
+        ],
+        "acs_ont_flag_updated_created": [
+            "Must be of Integer type"
+        ],
+        "acs_ont_model": [
+            "Must be of String type"
+        ],
+        "acs_ont_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_ont_product": [
+            "Must be of String type"
+        ],
+        "acs_odu_serial_number": [
+            "Must be of String type"
+        ],
+        "acs_odu_cpe_updated": [
+            "Must be of DateTime type"
+        ],
+        "acs_odu_product": [
+            "Must be of String type"
+        ],
+        "acs_odu_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_odu_model": [
+            "Must be of String type"
+        ],
+        "acs_odu_flag_updated_created": [
+            "Must be of Float type"
+        ],
+        "dc_stb_serial_number": [
+            "Must be of String type"
+        ],
+        "dc_stb_duration_in_min": [
+            "Must be of Float type"
+        ],
+        "dc_stb_app": [
+            "Must be of String type"
+        ],
+        "version_code": [
+            "Must be of Integer type"
+        ],
+        "adc_library_version": [
+            "Must be of Integer type"
+        ],
+        "host_application_version": [
+            "Must be of Integer type"
+        ],
+        "adc_library_version_name": [
+            "Must be of String type"
+        ],
+        "app_hour_bucket": [
+            "Must be of String type"
+        ],
+        "dc_stb_event_date": [
+            "Must be of Date type"
+        ],
+        "acs_stb_model": [
+            "Must be of String type"
+        ],
+        "acs_stb_pcg_manufacturer_name": [
+            "Must be of String type"
+        ],
+        "acs_stb_product": [
+            "Must be of String type"
+        ],
+        "dc_stb_app_pkg": [
+            "Must be of String type"
+        ],
+        "insert_date": [
+            "Must be of Date type"
+        ],
+        "dc_ott_appname": [
+            "Must be a string "
+        ],
+        "d_system_app_flag": [
+            "Must be a string ",
+            "Must be either 'yes' or 'no' "
+        ],
+        "old_system_app_flag": [
+            "Must be a string ",
+            "Must be either 'yes' or 'no' "
+        ],
+        "dc_model": [
+            "Must be a string "
+        ],
+        "bucket_0to1_mou": [
+            "Must be a float "
+        ],
+        "bucket_1to2_mou": [
+            "Must be a float "
+        ],
+        "bucket_2to3_mou": [
+            "Must be a float "
+        ],
+        "bucket_3to4_mou": [
+            "Must be a float "
+        ],
+        "bucket_4to5_mou": [
+            "Must be a float "
+        ],
+        "bucket_5to6_mou": [
+            "Must be a float "
+        ],
+        "bucket_6to7_mou": [
+            "Must be a float "
+        ],
+        "bucket_7to8_mou": [
+            "Must be a float "
+        ],
+        "bucket_8to9_mou": [
+            "Must be a float "
+        ],
+        "bucket_9to10_mou": [
+            "Must be a float "
+        ],
+        "bucket_10to11_mou": [
+            "Must be a float "
+        ],
+        "bucket_11to12_mou": [
+            "Must be a float "
+        ],
+        "bucket_12to13_mou": [
+            "Must be a float "
+        ],
+        "bucket_13to14_mou": [
+            "Must be a float "
+        ],
+        "bucket_14to15_mou": [
+            "Must be a float "
+        ],
+        "bucket_15to16_mou": [
+            "Must be a float "
+        ],
+        "bucket_16to17_mou": [
+            "Must be a float "
+        ],
+        "bucket_17to18_mou": [
+            "Must be a float "
+        ],
+        "bucket_18to19_mou": [
+            "Must be a float "
+        ],
+        "bucket_19to20_mou": [
+            "Must be a float "
+        ],
+        "bucket_20to21_mou": [
+            "Must be a float "
+        ],
+        "bucket_21to22_mou": [
+            "Must be a float "
+        ],
+        "bucket_22to23_mou": [
+            "Must be a float "
+        ],
+        "bucket_23to24_mou": [
+            "Must be a float "
+        ],
+        "d_app_pkg": [
+            "Must be a string "
+        ],
+        "gis_jp_id": [
+            "Must be a string "
+        ],
+        "partition_date": [
+            "Must be a Date type",
+            "Must follow the format dd/mm/yy"
+        ]
+    },
+    "session_uuid": "7e0a6da9",
+    "csv_filename": "sample_7e0a6da9_20241213_10.csv"
+}

@@ -1,0 +1,112 @@
+Column,Data_Type,Data_Description
+rr_crm_device_serial_number,string,Unique serial number of the set-top box device
+rr_crm_device_type,string,"Type of the device, e.g., STB (Set Top Box)"
+rr_crm_customer_activation_date,datetime,Date when the customer was activated for the service
+d_customer_paid_flag,string,Flag indicating whether the customer is paid or migrated
+crm_offer_id,integer,Identifier for specific offer or plan that the customer is on
+crm_customer_id,integer,Unique identifier for each customer
+crm_city,string,City where the customer is located
+crm_district,string,District of the city where the customer is located
+crm_state,string,State where the customer is located
+crm_jio_center_id,string,Unique identifier for the Jio center
+crm_inst_city,string,Installation city of the service
+crm_inst_district,string,Installation district of the service
+crm_inst_state,string,Installation state of the service
+crm_inst_jio_center_id,string,Unique identifier for the installation Jio center
+crm_circle_id,string,Region or circle identifier for the service
+crm_product_status,string,Status of the product/service
+crm_product_activation_date,datetime,Date and time when the product/service was activated
+crm_cust_catg,float,Customer category identifier or code
+crm_customer_creation_date,datetime,Date and time when the customer was created in the system
+crm_activation_appointment_date,datetime,Date and time of the activation appointment
+customer_service_id,float,Unique identifier for the customer service
+crm_customer_service_id,float,Unique identifier for the customer service in CRM
+crm_voice_service_id,float,Unique identifier for the voice service
+crm_service_type,string,Type of the service provided
+crm_service_last_modified_date,datetime,Date and time when the service was last modified
+crm_msisdn,float,Mobile number associated with the service
+crm_imsi_number,float,IMSI (International Mobile Subscriber Identity) number
+crm_product_name,string,Name of the product/service
+manually_onboarded,string,Indicator if the customer was onboarded manually
+d_customer_product_type,string,Type of the customer product
+d_customer_creation_date,datetime,Date when the customer product was created
+d_product_activation_date,datetime,Date when the customer product was activated
+cc_transaction_date,datetime,Date of the latest transaction
+cc_plan_id,float,Identifier for the plan
+s_plan_name,string,Name of the service plan
+s_plan_type,string,Type of the service plan
+cc_latest_recharge_date,datetime,Date of the latest recharge
+cc_latest_recharge_validity,datetime,Validity date of the latest recharge
+d_plan_status,string,Status of the plan
+gis_building_id,string,Unique identifier for the building in GIS system
+gis_ujp_sap_id,String,Unique identifier for the set-top box installation point.
+gis_r4g_state,String,State where the set-top box is installed.
+gis_city,String,City where the set-top box is installed.
+gis_jiocentre_code,String,Code representing the Jio center associated with the installation.
+gis_fsa_id,String,Fiber Service Area Identifier.
+gis_building_category_tpsg,String,"Building category or type, possibly related to the TPSG (Telecom Power and Services Grid) system."
+gis_ont_serial_number,String,Serial number of the ONT (Optical Network Terminal) device.
+oltponport,String,Port on the OLT (Optical Line Terminal) to which the ONT is connected.
+oltneid,String,Network Element ID of the OLT.
+east_side_neighbor_neid,String,Network Element ID of the east-side neighbor connected to the same network segment.
+west_side_neighbor_neid,String,Network Element ID of the west-side neighbor connected to the same network segment.
+s2outport,String,Output port on the second stage of the network equipment.
+s2neid,String,Network Element ID associated with the second stage of the network.
+s1outport,String,Output port on the first stage of the network equipment.
+s1neid,String,Network Element ID associated with the first stage of the network.
+acs_ont_cpe_updated,Timestamp,Timestamp of the last update to the ONT CPE (Customer Premises Equipment) information.
+acs_ont_flag_updated_created,Float,Flag indicating whether the ONT information was updated or created.
+acs_ont_model,String,Model of the ONT device.
+acs_ont_pcg_manufacturer_name,String,Manufacturer of the ONT's PCG (Power Control Gate) module.
+acs_ont_product,String,Product name of the ONT.
+acs_odu_serial_number,String,"Serial number of the ODU (Optical Distribution Unit) device, if applicable."
+acs_odu_cpe_updated,Timestamp,"Timestamp of the last update to the ODU CPE information, if applicable."
+acs_odu_product,String,"Product name of the ODU, if applicable."
+acs_odu_pcg_manufacturer_name,String,"Manufacturer of the ODU's PCG module, if applicable."
+acs_odu_model,String,"Model of the ODU, if applicable."
+acs_odu_flag_updated_created,Float,"Flag indicating whether the ODU information was updated or created, if applicable."
+dc_stb_serial_number,String,Serial number of the set-top box.
+dc_stb_duration_in_min,Float,"Duration of usage in minutes, possibly for a specific application or session."
+dc_stb_app,String,Name of the application being used on the set-top box.
+version_code,Integer,Version code of the software or application running on the set-top box.
+adc_library_version,Integer,Version of the ADC library used by the set-top box.
+host_application_version,Integer,Version of the host application running on the set-top box.
+adc_library_version_name,String,Name of the ADC library version.
+app_hour_bucket,String,Time bucket indicating the hour of the day when the application was used.
+dc_stb_event_date,Timestamp,Date of the event or usage recorded for the set-top box.
+acs_stb_model,String,Model of the set-top box.
+acs_stb_pcg_manufacturer_name,String,Manufacturer of the set-top box's PCG module.
+acs_stb_product,String,Product name of the set-top box.
+dc_stb_app_pkg,String,Package name of the application running on the set-top box.
+insert_date,Timestamp,Date when the record was inserted into the database.
+dc_ott_appname,string,Name of the OTT application used on the set-top box
+d_system_app_flag,boolean,Flag indicating if the application is a system app
+old_system_app_flag,boolean,Flag indicating if the application is an old system app
+dc_model,string,Model of the set-top box
+bucket_0to1_mou,float,Mean Opinion Score (MOS) for usage between 0 and 1 hour
+bucket_1to2_mou,float,Mean Opinion Score (MOS) for usage between 1 and 2 hours
+bucket_2to3_mou,float,Mean Opinion Score (MOS) for usage between 2 and 3 hours
+bucket_3to4_mou,float,Mean Opinion Score (MOS) for usage between 3 and 4 hours
+bucket_4to5_mou,float,Mean Opinion Score (MOS) for usage between 4 and 5 hours
+bucket_5to6_mou,float,Mean Opinion Score (MOS) for usage between 5 and 6 hours
+bucket_6to7_mou,float,Mean Opinion Score (MOS) for usage between 6 and 7 hours
+bucket_7to8_mou,float,Mean Opinion Score (MOS) for usage between 7 and 8 hours
+bucket_8to9_mou,float,Mean Opinion Score (MOS) for usage between 8 and 9 hours
+bucket_9to10_mou,float,Mean Opinion Score (MOS) for usage between 9 and 10 hours
+bucket_10to11_mou,float,Mean Opinion Score (MOS) for usage between 10 and 11 hours
+bucket_11to12_mou,float,Mean Opinion Score (MOS) for usage between 11 and 12 hours
+bucket_12to13_mou,float,Mean Opinion Score (MOS) for usage between 12 and 13 hours
+bucket_13to14_mou,float,Mean Opinion Score (MOS) for usage between 13 and 14 hours
+bucket_14to15_mou,float,Mean Opinion Score (MOS) for usage between 14 and 15 hours
+bucket_15to16_mou,float,Mean Opinion Score (MOS) for usage between 15 and 16 hours
+bucket_16to17_mou,float,Mean Opinion Score (MOS) for usage between 16 and 17 hours
+bucket_17to18_mou,float,Mean Opinion Score (MOS) for usage between 17 and 18 hours
+bucket_18to19_mou,float,Mean Opinion Score (MOS) for usage between 18 and 19 hours
+bucket_19to20_mou,float,Mean Opinion Score (MOS) for usage between 19 and 20 hours
+bucket_20to21_mou,float,Mean Opinion Score (MOS) for usage between 20 and 21 hours
+bucket_21to22_mou,float,Mean Opinion Score (MOS) for usage between 21 and 22 hours
+bucket_22to23_mou,float,Mean Opinion Score (MOS) for usage between 22 and 23 hours
+bucket_23to24_mou,float,Mean Opinion Score (MOS) for usage between 23 and 24 hours
+d_app_pkg,string,Package name of the application
+gis_jp_id,string,Unique identifier for the geographic location or region
+partition_date,date,Date of the data partition

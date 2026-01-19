@@ -1,0 +1,112 @@
+Column,Data_Type,Data_Description
+rr_crm_device_serial_number,String,"Unique serial number for the customer's device (e.g., RKISBDI40368318)."
+rr_crm_device_type,String,"Type of device provided to the customer, typically a set-top box (STB) in this context."
+rr_crm_customer_activation_date,Datetime,"Date and time when the customer's service was activated (e.g., 08/12/21)."
+d_customer_paid_flag,String,"Indicates whether the customer's account is paid (e.g., 'paid', 'migrated')."
+crm_offer_id,Float,Unique identifier for the offer given to the customer.
+crm_customer_id,Float,Unique identifier for each customer.
+crm_city,String,"Name of the city where the customer resides (e.g., Jaipur City, Delhi East)."
+crm_district,String,"Administrative district of the city (e.g., Jaipur, East)."
+crm_state,String,"State where the city is located (e.g., RJ for Rajasthan, DL for Delhi)."
+crm_jio_center_id,String,"Unique identifier for the Jio center associated with the customer (e.g., I265)."
+crm_inst_city,String,Installation city for the service (same as crm_city in many cases).
+crm_inst_district,String,Installation district for the service (same as crm_district in many cases).
+crm_inst_state,String,Installation state for the service (same as crm_state in many cases).
+crm_inst_jio_center_id,String,Unique identifier for the Jio center where the service was installed.
+crm_circle_id,String,"Circle identifier within the telecom network (e.g., RJ, DL)."
+crm_product_status,String,"Status of the product associated with the customer (e.g., '1.0' for an active product)."
+crm_product_activation_date,Datetime,"Date and time when the product was activated (e.g., 2021-12-09T13:28:30.000+05:30)."
+crm_cust_catg,Float,"Customer category, likely a numeric code representing different customer types."
+crm_customer_creation_date,Datetime,Date and time when the customer's record was created in the system.
+crm_activation_appointment_date,Datetime,Date and time of the appointment for service activation.
+customer_service_id,Float,Unique identifier for the customer's service.
+crm_customer_service_id,Float,"Another unique identifier, potentially redundant with customer_service_id."
+crm_voice_service_id,String,Unique identifier for the voice service associated with the customer.
+crm_service_type,String,"Type of service provided (e.g., Z0005 for a specific service type)."
+crm_service_last_modified_date,Datetime,Date and time when the service details were last modified.
+crm_msisdn,String,"Mobile Subscriber Integrated Services Digital Network (MSISDN) number, unique to each mobile device (e.g., 778700000000)."
+crm_imsi_number,String,"International Mobile Subscriber Identity (IMSI) number, unique to each mobile device (e.g., 778700000000)."
+crm_product_name,String,"Name of the product or service provided to the customer (e.g., FTTH for Fiber To The Home)."
+manually_onboarded,Boolean,Indicates whether the customer was onboarded manually (True/False).
+d_customer_product_type,String,"Type of product subscribed by the customer (e.g., FTTH)."
+d_customer_creation_date,Datetime,Represents the date and time when the customer's account was created. Example: 09/12/21
+d_product_activation_date,Datetime,Indicates the date and time when the product was activated for the customer. Example: 2023-05-04T00:00:00
+cc_transaction_date,Datetime,The date and time of the last transaction for the customer. Example: 2023-04-30T14:32:28.000+05:30
+cc_plan_id,Integer,Unique identifier for the customer's plan. Example: 1014275
+s_plan_name,String,"Name of the customer's plan, typically describing the type and features of the plan. Example: 399+200(14 OTT) 6M"
+s_plan_type,String,"Type of the plan, such as BASEPLAN/POSTPAID. Example: BASEPLAN/POSTPAID"
+cc_latest_recharge_date,Datetime,Date and time of the latest recharge for the customer. Example: 2023-04-22T14:18:32.000+05:30
+cc_latest_recharge_validity,Datetime,Expiry date of the customer's latest recharge. Example: 2024-07-26T00:00:00.000+05:30
+d_plan_status,String,"Status of the customer's plan, such as active or expired. Example: active"
+gis_building_id,String,Identifier for the building where the customer's services are provided. Example: JPURBD0326568
+gis_ujp_sap_id,String,Unique Identifier for the SAP system entry in the customer's record. Example: I-RJ-JPUR-UJP-0001
+gis_r4g_state,String,State where the customer's services are provided (4G). Example: Rajasthan
+gis_city,String,City where the customer's services are provided. Example: Jaipur
+gis_jiocentre_code,String,Code identifying the Jio Centre associated with the customer's services. Example: I-RJ-JPUR-JCO-0001
+gis_fsa_id,String,FSA (Forward Sortation Area) ID for the customer's location. Example: JPUR0159
+gis_building_category_tpsg,String,"Category of the building based on its type, size, and other characteristics. Example: RSTOTKHB0057652"
+gis_ont_serial_number,String,Serial number of the Optical Network Terminal (ONT) associated with the customer's services. Example: RSVOTAJEM116307
+oltponport,String,Details of the Optical Line Terminal (OLT) port connected to the ONT. Example: LT-1/SLOT-15/SFPPON-15/Channel-6
+oltneid,String,Network Element Identifier for the OLT. Example: INRJJPURRMNGTW0002ENBOLT001
+east_side_neighbor_neid,String,Network Element Identifier of the East side neighbor. Example: INRJJPURMTNRCR0001MA2AAR001
+west_side_neighbor_neid,String,Network Element Identifier of the West side neighbor. Example: INRJJPURGAJNNB0001MA2AAR001
+s2outport,String,Details of the second-stage outport. Example: OUT-1
+s2neid,String,Network Element Identifier of the second-stage network element. Example: INRJJPURRMNGPL0381FTXSP2001
+s1outport,String,Details of the first-stage outport. Example: OUT-7
+s1neid,String,Network Element Identifier of the first-stage network element. Example: INRJJPURRMNGPL0099FTXSP1001
+acs_ont_cpe_updated,Datetime,Date and time when the ONT Customer Premises Equipment (CPE) was last updated. Example: 2024-06-28T13:13:11.000+05:30
+acs_ont_flag_updated_created,Float,A flag or timestamp indicating whether the ONT's flag was updated or created. Example: 2.0
+acs_ont_model,String,Model of the ONT. Example: JCOW404
+acs_ont_pcg_manufacturer_name,String,Name of the manufacturer of the ONT's PCG (Power Control Gateway). Example: Sercomm
+acs_ont_product,String,Product name of the ONT. Example: SRCMTF1_JCOW404_R2.30.1
+acs_odu_serial_number,String,"Unique serial number of the ACS Optical Distribution Unit (ODU), used to identify specific hardware devices."
+acs_odu_cpe_updated,String,"Date when the ACS ODU software was last updated, represented as a textual string."
+acs_odu_product,String,"Product name or model of the ACS ODU, providing specifics about the device type."
+acs_odu_pcg_manufacturer_name,String,Name of the manufacturer of the Personal Computer Group (PCG) component within the ACS ODU.
+acs_odu_model,String,"Model number or identifier for the ACS ODU, indicating the specific version or model of the device."
+acs_odu_flag_updated_created,String,"Flag indicating whether the ACS ODU record was updated or created, typically a text value like ""U"" for updated or ""C"" for created."
+dc_stb_serial_number,String,"Unique serial number of the Digital Cable Set Top Box (STB), used to identify specific set top box devices."
+dc_stb_duration_in_min,Float,"Duration in minutes for which a specific app was used on the STB, including fractional minutes."
+dc_stb_app,String,"Name of the application used on the STB, such as ""Hotstar,"" ""JioCinema,"" or ""Netflix."""
+version_code,Integer,"Numeric code representing the version of the application used, typically used for version control and updates."
+adc_library_version,Integer,"Version number of the ADC library used in the STB, aiding in software compatibility and functionality."
+host_application_version,Integer,"Version number of the host application running on the STB, similar to the ADC library version but specific to the host app."
+adc_library_version_name,String,"Name of the ADC library version used, providing a descriptive version identifier."
+app_hour_bucket,String,"Time bucket representing the hour during which the application was used, derived from the event date and time."
+dc_stb_event_date,Date,"Date of the event recorded for the STB usage, formatted as ""dd/mm/yy."""
+acs_stb_model,String,"Model of the ACS STB, indicating the specific type or version of the set top box."
+acs_stb_pcg_manufacturer_name,String,Name of the manufacturer of the PCG component within the ACS STB.
+acs_stb_product,String,"Product name or model of the ACS STB, providing specifics about the device type."
+dc_stb_app_pkg,String,"Package name of the application used on the STB, such as ""com.jio.media.stb.ondemand"" or ""com.netflix.ninja."""
+insert_date,Date,"Date when the data record was inserted into the database, formatted as ""dd/mm/yy."""
+dc_ott_appname,String,"Name of the Over-The-Top (OTT) application used on the STB, such as ""Hotstar,"" ""JioCinema,"" or ""Netflix."""
+d_system_app_flag,Boolean,"Flag indicating whether the system application is active or not, with possible values 'yes' or 'no'."
+old_system_app_flag,Boolean,"Flag indicating whether the old system application is active or not, with possible values 'yes' or 'no'."
+dc_model,String,"Model of the Digital Cable (DC) STB, providing specifics about the device type."
+bucket_0to1_mou,Float,"Minutes of Usage (MOU) for the 0-1 hour bucket, representing the time spent on the app within this time segment."
+bucket_1to2_mou,Float,"Minutes of Usage (MOU) for the 1-2 hour bucket, representing the time spent on the app within this time segment."
+bucket_2to3_mou,Float,"Minutes of Usage (MOU) for the 2-3 hour bucket, representing the time spent on the app within this time segment."
+bucket_3to4_mou,Float,"Minutes of Usage (MOU) for the 3-4 hour bucket, representing the time spent on the app within this time segment."
+bucket_4to5_mou,Float,"Minutes of Usage (MOU) for the 4-5 hour bucket, representing the time spent on the app within this time segment."
+bucket_5to6_mou,Float,"Minutes of Usage (MOU) for the 5-6 hour bucket, representing the time spent on the app within this time segment."
+bucket_6to7_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 6:00 and 7:00 AM. Sample values include 0.0, 0.5333333333333333, 0.1666666666666666."
+bucket_7to8_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 7:00 and 8:00 AM. Sample values include 0.0, 0.0, 0.0."
+bucket_8to9_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 8:00 and 9:00 AM. Sample values include 0.0, 0.0, 0.0."
+bucket_9to10_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 9:00 and 10:00 AM. Sample values include 0.0, 0.0, 0.0."
+bucket_10to11_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 10:00 and 11:00 AM. Sample values include 0.0, 0.0, 0.0."
+bucket_11to12_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 11:00 and 12:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_12to13_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 12:00 and 1:00 PM. Sample values include 0.1666666666666666, 0.0, 0.0."
+bucket_13to14_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 1:00 and 2:00 PM. Sample values include 0.5333333333333333, 0.1166666666666666, 0.0."
+bucket_14to15_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 2:00 and 3:00 PM. Sample values include 0.0, 0.0, 2.983333333333333."
+bucket_15to16_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 3:00 and 4:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_16to17_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 4:00 and 5:00 PM. Sample values include 0.0, 0.0, 19.716666666666665."
+bucket_17to18_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 5:00 and 6:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_18to19_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 6:00 and 7:00 PM. Sample values include 0.0, 0.066666667, 12.183333333333334."
+bucket_19to20_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 7:00 and 8:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_20to21_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 8:00 and 9:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_21to22_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 9:00 and 10:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_22to23_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 10:00 and 11:00 PM. Sample values include 0.0, 0.0, 0.0."
+bucket_23to24_mou,Float,"Represents the average minutes of use (MOU) for calls or usage between 11:00 PM and midnight. Sample values include 0, 0.5, 0.0."
+d_app_pkg,String,"Represents the application package or software package identifier. It is a string that uniquely identifies an application or package. Sample values include ""in.startv.hotstar"", ""com.jio.media.stb.ondemand""."
+gis_jp_id,String,"Represents a geographic or location identifier possibly linked to the telecom services provided. It is a string that helps in identifying the location or region. Sample values include """", """"."
+partition_date,Date,Represents the date on which the data was partitioned or segmented. It is in the format 'dd/mm/yy'. Sample values include '29/06/24'.

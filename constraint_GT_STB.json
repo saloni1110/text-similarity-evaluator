@@ -1,0 +1,1524 @@
+{
+    "gt_file_name": "28c73b87-5f35-5699-aafc-ac707575791f",
+    "prompt": "\n        You are an expert in analyzing the validation rules, you can understand validations from normal text and provide relevant functions that can be applied for that check.\n        Your task is: identify the corresponding function(s) that should be called along with the appropriate parameters.\n\n        Here is some context of data\n        Dataset Overview:\n        {'rows': 5000, 'number of columns': 31, 'column_names': Index(['dc_ott_appname', 'd_system_app_flag', 'old_system_app_flag',\n       'dc_model', 'bucket_0to1_mou', 'bucket_1to2_mou', 'bucket_2to3_mou',\n       'bucket_3to4_mou', 'bucket_4to5_mou', 'bucket_5to6_mou',\n       'bucket_6to7_mou', 'bucket_7to8_mou', 'bucket_8to9_mou',\n       'bucket_9to10_mou', 'bucket_10to11_mou', 'bucket_11to12_mou',\n       'bucket_12to13_mou', 'bucket_13to14_mou', 'bucket_14to15_mou',\n       'bucket_15to16_mou', 'bucket_16to17_mou', 'bucket_17to18_mou',\n       'bucket_18to19_mou', 'bucket_19to20_mou', 'bucket_20to21_mou',\n       'bucket_21to22_mou', 'bucket_22to23_mou', 'bucket_23to24_mou',\n       'd_app_pkg', 'gis_jp_id', 'partition_date'],\n      dtype='object'), 'aboutdata': 'This is set-top dataset of jio telecommunication.'}\n\n        Here is sample of dataset:\n        dc_ott_appname,d_system_app_flag,old_system_app_flag,dc_model,bucket_0to1_mou,bucket_1to2_mou,bucket_2to3_mou,bucket_3to4_mou,bucket_4to5_mou,bucket_5to6_mou,bucket_6to7_mou,bucket_7to8_mou,bucket_8to9_mou,bucket_9to10_mou,bucket_10to11_mou,bucket_11to12_mou,bucket_12to13_mou,bucket_13to14_mou,bucket_14to15_mou,bucket_15to16_mou,bucket_16to17_mou,bucket_17to18_mou,bucket_18to19_mou,bucket_19to20_mou,bucket_20to21_mou,bucket_21to22_mou,bucket_22to23_mou,bucket_23to24_mou,d_app_pkg,gis_jp_id,partition_date\nHotstar,no,no,JHSB200,0.0,2.383333333,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,in.startv.hotstar,,29/06/24\nJioCinema,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.533333333,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,com.jio.media.stb.ondemand,,29/06/24\nVoice Assistant,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.166666667,0.116666667,0.0,0.616666667,0.0,0.0,0.0,2.483333333,14.3,1.216666667,0.0,0,com.android.app.jio.voiceassist,,29/06/24\nJiotv+,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.066666667,0.0,0.0,0.0,0,com.jio.media.stb.ondemand.patchwall,,29/06/24\nJioLauncher,yes,yes,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,3.4,0.033333333,0.0,0.0,0.0,1.85,0.0,0.0,0.0,2.1,0.0,0.0,1.233333333,0.0,0.0,0.5,0,com.iwedia.ui.rjio.launcher.reliance,,29/06/24\nHotstar,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,in.startv.hotstar,,29/06/24\nZEE5,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,12.18333333,0.0,0.0,0.0,0.0,0,com.zee5.aosp,,29/06/24\nNetflix,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,9.55,1.6,0.0,0.0,1.716666667,0.0,0.0,0.0,0.0,0.0,57.18333333,0.0,0.0,0.0,0,com.netflix.ninja,,29/06/24\nYouTube,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,2.983333333,0.0,19.71666667,0.0,0.0,0.0,0.0,0.0,0.0,0,com.jio.yt,,29/06/24\nVoice Assistant,no,no,JHSB200,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.15,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0,com.android.app.jio.voiceassist,,29/06/24\n\n\n        Here are the statistical details for each column (mean, standard deviation, minimum, maximum):\n                                               mean           std           min           max\ncrm_offer_id                   1.404982e+06  5.510415e+02  1.400285e+06  1.406231e+06\ncrm_customer_id                5.473441e+09  2.706488e+09  1.089798e+09  7.605530e+09\ncrm_cust_catg                  1.267367e+00  9.990913e-01  1.000000e+00  5.000000e+00\ncustomer_service_id            7.504493e+11  1.128104e+11  2.991320e+11  7.787210e+11\ncrm_customer_service_id        7.507427e+11  1.128953e+11  2.990000e+11  7.790000e+11\ncrm_voice_service_id                    NaN           NaN           NaN           NaN\ncrm_msisdn                              NaN           NaN           NaN           NaN\ncrm_imsi_number                         NaN           NaN           NaN           NaN\ncrm_product_name                        NaN           NaN           NaN           NaN\nmanually_onboarded                      NaN           NaN           NaN           NaN\ncc_plan_id                     1.014484e+06  1.376819e+03  1.011508e+06  1.018436e+06\nacs_ont_flag_updated_created   2.000000e+00  0.000000e+00  2.000000e+00  2.000000e+00\nacs_odu_serial_number                   NaN           NaN           NaN           NaN\nacs_odu_cpe_updated                     NaN           NaN           NaN           NaN\nacs_odu_product                         NaN           NaN           NaN           NaN\nacs_odu_pcg_manufacturer_name           NaN           NaN           NaN           NaN\nacs_odu_model                           NaN           NaN           NaN           NaN\nacs_odu_flag_updated_created            NaN           NaN           NaN           NaN\ndc_stb_duration_in_min         4.171138e+01  1.065139e+02  0.000000e+00  1.240250e+03\nversion_code                   8.805931e+07  1.719975e+08  1.000000e+00  6.060162e+08\nadc_library_version            2.122303e+09  1.265818e+06  2.106012e+09  2.122401e+09\nhost_application_version       2.122303e+09  1.265812e+06  2.106012e+09  2.122401e+09\napp_hour_bucket                         NaN           NaN           NaN           NaN\nbucket_0to1_mou                1.141920e+00  7.483057e+00  0.000000e+00  6.000000e+01\nbucket_1to2_mou                7.169567e-01  6.149394e+00  0.000000e+00  6.000000e+01\nbucket_2to3_mou                6.337800e-01  5.952910e+00  0.000000e+00  6.000000e+01\nbucket_3to4_mou                5.494400e-01  5.656241e+00  0.000000e+00  6.000000e+01\nbucket_4to5_mou                5.191867e-01  5.483182e+00  0.000000e+00  6.000000e+01\nbucket_5to6_mou                5.361167e-01  5.409273e+00  0.000000e+00  6.000000e+01\nbucket_6to7_mou                6.568800e-01  5.825501e+00  0.000000e+00  6.000000e+01\nbucket_7to8_mou                1.046087e+00  6.820083e+00  0.000000e+00  6.000000e+01\nbucket_8to9_mou                1.599263e+00  8.341457e+00  0.000000e+00  6.000000e+01\nbucket_9to10_mou               1.992170e+00  9.064002e+00  0.000000e+00  6.000000e+01\nbucket_10to11_mou              2.324007e+00  9.810748e+00  0.000000e+00  6.000000e+01\nbucket_11to12_mou              2.661070e+00  1.052276e+01  0.000000e+00  6.000000e+01\nbucket_12to13_mou              2.640650e+00  1.054107e+01  0.000000e+00  6.000000e+01\nbucket_13to14_mou              2.666840e+00  1.064401e+01  0.000000e+00  6.000000e+01\nbucket_14to15_mou              2.556460e+00  1.027355e+01  0.000000e+00  6.000000e+01\nbucket_15to16_mou              2.395043e+00  1.020278e+01  0.000000e+00  6.000000e+01\nbucket_16to17_mou              2.248123e+00  9.852251e+00  0.000000e+00  6.000000e+01\nbucket_17to18_mou              2.149293e+00  9.517135e+00  0.000000e+00  6.000000e+01\nbucket_18to19_mou              2.403753e+00  9.844666e+00  0.000000e+00  6.000000e+01\nbucket_19to20_mou              2.875657e+00  1.037284e+01  0.000000e+00  6.000000e+01\nbucket_20to21_mou              3.352877e+00  1.162662e+01  0.000000e+00  6.000000e+01\nbucket_21to22_mou              2.853710e+00  1.020771e+01  0.000000e+00  6.000000e+01\nbucket_22to23_mou              1.192100e+00  6.261408e+00  0.000000e+00  5.876667e+01\nbucket_23to24_mou              0.000000e+00  0.000000e+00  0.000000e+00  0.000000e+00\ngis_jp_id                               NaN           NaN           NaN           NaN\n\n        Here are the set of validation checks for this chunk:\n        {'dc_stb_duration_in_min': ['Must be a Float', 'Must be between 0 and 1240.25'], 'dc_stb_event_date': ['Must be a String', 'Must follow the pattern \\\\d{2}/\\\\d{2}/\\\\d{2}'], 'dc_stb_serial_number': ['Must be a String'], 'east_side_neighbor_neid': ['Must be a String', 'Must follow a specific NEID format'], 'gis_building_category_tpsg': ['Must be a String', 'Allowed values are predefined building categories'], 'gis_building_id': ['Must be a String', 'No missing values allowed'], 'gis_city': ['Must be a String', 'Allowed values are predefined cities in the respective states'], 'gis_fsa_id': ['Must be a String', 'Must follow the pattern [A-Za-z]{4}\\\\d{3}'], 'gis_jiocentre_code': ['Must be a String', 'Must follow the pattern I-[A-Z]{2}-[A-Za-z]+-JCO-\\\\d{4}'], 'gis_jp_id': ['Must be a String'], 'gis_ont_serial_number': ['Must be a String', 'Must follow a specific serial number format'], 'gis_r4g_state': ['Must be a String', 'Allowed values are predefined states of India'], 'gis_ujp_sap_id': ['Must be a String', 'Must follow the pattern I-[A-Z]{2}-[A-Za-z]+-UJP-\\\\d{4}'], 'host_application_version': ['Must be an Integer', 'Must be between 2106011933 and 2122401100'], 'insert_date': ['Must be a Date'], 'manually_onboarded': ['Must be a String', 'No missing values allowed'], 'old_system_app_flag': ['Must be a String', \"Must be one of 'yes', 'no'\"], 'oltneid': ['Must be a String', 'Must follow a specific NEID format'], 'oltponport': ['Must be a String', 'Must follow a specific port format'], 'partition_date': ['Must be a String', 'Must follow the format dd/mm/yy'], 'rr_crm_customer_activation_date': ['Must be a Date', 'No missing values allowed'], 'rr_crm_device_serial_number': ['Must be a String', 'No missing values allowed'], 'rr_crm_device_type': ['Must be a String', 'Possible values are STB'], 's1neid': ['Must be a String', 'Must follow a specific NEID format'], 's1outport': ['Must be a String', 'Must follow a specific port format'], 's2neid': ['Must be a String', 'Must follow a specific NEID format'], 's2outport': ['Must be a String', 'Must follow a specific port format'], 's_plan_name': ['Must be a String', 'No missing values allowed'], 's_plan_type': ['Must be a String', 'Possible values are BASEPLAN/POSTPAID'], 'version_code': ['Must be an Integer', 'Must be between 1 and 606016181'], 'west_side_neighbor_neid': ['Must be a String', 'Must follow a specific NEID format']}\n\n        Here is a list of predefined functions to implement these validation checks, which you need to map:\n                                     no_nulls(column name)\n           nulls_below_number(column name, number)\n null_percentage_below_number(column name, number)\n                  greater_than_number(column name)\n          smaller_than_number(column name, number)\n               in_range(column name, lower, upper)\n                         non_negative(column name)\nmost_common_items_in_set(column name, reference...\nfrequent_strings_in_reference_set(column name, ...\n           count_below_number(column name, number)\ndistinct_count_in_range(column name, lower, upper)\n                    nullable_integral(column name)\n                     nullable_boolean(column name)\n                  nullable_fractional(column name)\n                      nullable_object(column name)\n                      nullable_string(column name)\ncondition_always_meets(column name, condition_n...\ncondition_never_meets(column name, condition_name)\ncondition_count_below(column name, condition_na...\n          mean_in_range(column name, lower, upper)\nstandard_deviation_in_range(column name, lower,...\nquantile_in_range(column name, quantile, lower,...\n                           values_are_null(column)\nvalue_length_within_range(column, min_value (op...\n               values_match_pattern(column, regex)\n        values_do_not_match_pattern(column, regex)\nvalue_length_equals_specified_number(column, va...\nvalues_match_one_of_listed_patterns(column, reg...\nvalues_do_not_match_any_of_listed_patterns(colu...\nsum_across_columns_equals_specified_value(colum...\nproportion_of_unique_values_within_range(column...\n                         values_are_unique(column)\nselected_column_values_are_unique_per_record(co...\n     combination_of_columns_is_unique(column_list)\ndistinct_values_are_in_specified_set(column, va...\ndistinct_values_equal_specified_set(column, val...\ncolumn_pair_values_are_in_specified_set(column_...\nvalues_are_not_in_specified_set(column, value_set)\ndistinct_values_include_specified_set(column, v...\n    values_are_in_specified_set(column, value_set)\nkl_divergence_below_threshold(column, partition...\n value_z_scores_below_threshold(column, threshold)\ncolumn_a_values_greater_than_column_b(column_A,...\ncolumn_sum_within_range(column, min_value (opti...\ncolumn_maximum_within_range(column, min_value (...\ncolumn_median_within_range(column, min_value (o...\ncolumn_quantiles_within_range(column, quantile_...\ncolumn_minimum_within_range(column, min_value (...\n                             column_exists(column)\n       column_count_equals_specified_number(value)\n           columns_match_specified_set(column_set)\nvalues_are_in_specified_type_list(column, type_...\n   column_count_within_range(min_value, max_value)\n        columns_match_specified_order(column_list)\n      row_count_within_range(min_value, max_value)\n          row_count_equals_specified_number(value)\n\n        Ensure that each function is matched to the right check based on its description.\n        Match each validation check to the appropriate function from the predefined list.\n        Provide the output in the following pipe-separated format:\n        \n        column_name|constraint:function_name|params:key1=value1,key2=value2,...  \n        Example Output:\n        age|constraint:greater_than_number|params:number=20  \n        name|constraint:frequent_strings_in_reference_set|params:reference_set=[\"John\",\"Jane\"]  \n        salary|constraint:range|params:min=3000,max=10000  \n\n\n\n        Example of Json format that you need to provide output with:\n        {\n            \"column_name\": [\n                {\n                    \"constraint\": \"function name of the constraint\",\n                    \"params\": {\"key\": \"value\"}\n                },\n                {\n                    \"constraint\": \"greater_than_number\",\n                    \"params\": {\"number\": 20}\n                },\n                {\n                    \"constraint\": \"frequent_strings_in_reference_set\",\n                    \"params\": {\"reference_set\": []}\n                }\n            ]\n        }\n        ",
+    "llm_generated": {
+        "acs_odu_cpe_updated": [
+            {
+                "constraint": "nullable_datetime",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_odu_flag_updated_created": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "condition_always_meets",
+                "params": {
+                    "condition_name": "equals",
+                    "value": 2.0
+                }
+            }
+        ],
+        "acs_odu_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_odu_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": []
+                }
+            }
+        ],
+        "acs_odu_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_odu_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_ont_cpe_updated": [
+            {
+                "constraint": "nullable_datetime",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_ont_flag_updated_created": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "condition_always_meets",
+                "params": {
+                    "condition_name": "equals",
+                    "value": 2.0
+                }
+            }
+        ],
+        "acs_ont_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_ont_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": []
+                }
+            }
+        ],
+        "acs_ont_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_stb_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "acs_stb_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": []
+                }
+            }
+        ],
+        "acs_stb_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "adc_library_version": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 2106011852,
+                    "upper": 2122401100
+                }
+            }
+        ],
+        "adc_library_version_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "app_hour_bucket": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "bucket_0to1_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0.0,
+                    "upper": 60.0
+                }
+            }
+        ],
+        "bucket_10to11_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0.0,
+                    "upper": 60.0
+                }
+            }
+        ],
+        "bucket_11to12_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0.0,
+                    "upper": 60.0
+                }
+            }
+        ],
+        "bucket_9to10_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0.0,
+                    "upper": 60.0
+                }
+            }
+        ],
+        "cc_latest_recharge_date": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{3})?\\+\\d{2}:\\d{2}$"
+                }
+            }
+        ],
+        "cc_latest_recharge_validity": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "cc_plan_id": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 1011508.0,
+                    "upper": 1018436.0
+                }
+            }
+        ],
+        "cc_transaction_date": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "dc_stb_duration_in_min": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "non_negative",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0,
+                    "upper": 1240.25
+                }
+            }
+        ],
+        "dc_stb_event_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "dc_stb_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "east_side_neighbor_neid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "gis_building_category_tpsg": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_one_of_listed_patterns",
+                "params": {
+                    "patterns": [
+                        "predefined set of categories"
+                    ]
+                }
+            }
+        ],
+        "gis_building_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "gis_city": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_one_of_listed_patterns",
+                "params": {
+                    "patterns": [
+                        "predefined set of city names"
+                    ]
+                }
+            }
+        ],
+        "gis_fsa_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "gis_jiocentre_code": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "gis_jp_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "gis_ont_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "gis_r4g_state": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_one_of_listed_patterns",
+                "params": {
+                    "patterns": [
+                        "predefined set of state names"
+                    ]
+                }
+            }
+        ],
+        "gis_ujp_sap_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_unique",
+                "params": {}
+            }
+        ],
+        "host_application_version": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            },
+            {
+                "constraint": "greater_than_number",
+                "params": {
+                    "number": 2106011933
+                }
+            },
+            {
+                "constraint": "smaller_than_number",
+                "params": {
+                    "number": 2122401100
+                }
+            }
+        ],
+        "insert_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "manually_onboarded": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "old_system_app_flag": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_one_of_listed_patterns",
+                "params": {
+                    "patterns": [
+                        "yes",
+                        "nonoo0"
+                    ]
+                }
+            }
+        ],
+        "oltneid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "oltponport": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "partition_date": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ]
+    },
+    "input_gt": {},
+    "human_edited_gt": {
+        "response": "Based",
+        "bucket_0to1_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_1to2_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_2to3_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_3to4_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_4to5_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_5to6_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_6to7_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_7to8_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_8to9_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_9to10_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_10to11_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_11to12_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_12to13_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_13to14_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_14to15_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_15to16_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_16to17_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_17to18_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_18to19_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_19to20_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_20to21_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_21to22_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_22to23_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "bucket_23to24_mou": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "cc_latest_recharge_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "cc_latest_recharge_validity": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "d_plan_status": [
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": { 
+                    "value_set":[
+                        "active",
+                        "expired"
+                    ]
+                }
+            }
+        ],
+        "cc_plan_id": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "cc_transaction_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "crm_activation_appointment_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "customer_service_id": [
+            {
+                "constraints": "nullable_fractional",
+                "params" : {}
+            }
+        ],
+        "crm_customer_service_id": [
+            {
+                "constraints": "nullable_fractional",
+                "params" : {}
+            }
+        ],
+        "crm_voice_service_id":[
+            {
+                "constraints": "nullable_integral",
+                "params" : {}
+            }
+        ],
+        "crm_service_type": [
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "Z00005"
+                    ]
+                }
+            }
+        ],
+        "crm_service_last_modified_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "d_app_pkg":[
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            }
+        ],
+        "crm_msisdn": [
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            }
+        ],
+        "crm_imsi_number": [
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            }
+        ],
+        "crm_product_name": [
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined product name"
+                }
+            }
+        ],
+        "d_customer_product_type": [
+            {
+                "constraints": "nullable_string",
+                "params" : {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined product type"
+                }
+            }
+        ],
+        "d_customer_creation_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+            
+        ],
+        "d_product_activation_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            } 
+        ],
+        "crm_circle_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined telecom circle identifier"
+                }
+            }
+        ],
+        "crm_product_status": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "value_set": [
+                        "Z020",
+                        "Z040",
+                        "Z070",
+                        "Z000"
+                    ]
+            }
+        ],
+        "crm_product_activation_date":[
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "crm_city": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined city of India"
+                }
+
+            }
+        ],
+        "crm_district": [
+            {
+                "constraint": "nullable_string",
+                "params": {}   
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined district of India"
+                }
+
+            }
+        ],
+        "crm_state":[
+            {
+                "constraint": "nullable_string",
+                "params": {}   
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined state of India"
+                }
+
+            }
+
+        ],
+        "crm_jio_center_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}   
+            }
+        ],
+        "crm_inst_city": [
+            {
+                "constraint": "nullable_string",
+                "params": {} 
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined city of India"
+                }
+            }
+        ],
+        "crm_inst_district":[
+            {
+                "constraint": "nullable_string",
+                "params": {} 
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined district of India"
+                }
+            }
+        ],
+        "crm_inst_state":[
+            {
+                "constraint": "nullable_string",
+                "params": {} 
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined state of India"
+                }
+            }
+        ],
+        "crm_inst_jio_center_id":[
+            {
+                "constraint": "nullable_string",
+                "params": {} 
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined state centre ID"
+                }
+            }
+        ],
+        "crm_cust_catg": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "crm_customer_creation_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "^(\\d{4})-(\\d{2})-(\\d{2})T(\\d{2}):(\\d{2}):(\\d{2})"
+                }
+            }
+        ],
+        "dc_stb_duration_in_min": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            },
+            {
+                "constraint": "in_range",
+                "params": {
+                    "lower": 0,
+                    "upper": 1240.25
+                }
+            }
+        ],
+        "dc_stb_event_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "date"
+                }
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "\\d{2}/\\d{2}/\\d{2}"
+                }
+            }
+        ],
+        "dc_stb_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "east_side_neighbor_neid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "gis_building_category_tpsg": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined building categories"
+                }
+            }
+        ],
+        "gis_building_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "gis_city": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined cities in the respective states"
+                }
+            }
+        ],
+        "gis_fsa_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined cities in the respective states"
+                }
+            }
+        ],
+        "gis_jiocentre_code": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "I-[A-Z]{2}-[A-Za-z]+-JCO-\\d{4}"
+                }
+            }
+        ],
+        "gis_jp_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "gis_ont_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "specific serial number format"
+                }
+            }
+        ],
+        "gis_r4g_state": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": "predefined states of India"
+                }
+            }
+        ],
+        "gis_ujp_sap_id": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_unique",
+                "params": {}
+            }
+        ],
+        "host_application_version": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "adc_library_version_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "app_hour_bucket": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "insert_date": [
+            {
+                "constraint": "nullable_object",
+                "params": {
+                    "type": "date"
+                }
+            }
+        ],
+        "dc_ott_appname": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "d_system_app_flag": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "Yes",
+                        "No"
+                    ]
+                }
+            }
+
+        ],
+        "acs_stb_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_stb_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_stb_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ], 
+        "dc_stb_app_pkg": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ], 
+        "manually_onboarded": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "old_system_app_flag": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "yes",
+                        "no"
+                    ]
+                }
+            }
+        ],
+        "dc_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ], 
+        "oltneid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "oltponport": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "specific port format"
+                }
+            }
+        ],
+        "partition_date": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_match_pattern",
+                "params": {
+                    "regex": "\\d{2}/\\d{2}/\\d{2}"
+                }
+            }
+        ],
+        "rr_crm_customer_activation_date": [
+            {
+                "constraint": "values_are_null",
+                "params": {}
+            }
+        ],
+        "d_customer_paid_flag": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "paid",
+                        "migrated"
+                    ]
+                }
+            }
+        ],
+        "crm_offer_id": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+                    
+            }
+        ],
+        "crm_customer_id": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "rr_crm_device_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "rr_crm_device_type": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "STB"
+                    ]
+                }
+            }
+        ],
+        "s1neid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_ont_cpe_updated": [
+            {
+                "constarints": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            }
+        ],
+        "acs_ont_flag_updated_created": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "acs_ont_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_ont_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_ont_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_odu_serial_number": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_odu_cpe_updated": [
+            {
+                "constarints": "nullable_object",
+                "params": {
+                    "type": "datetime"
+                }
+            }
+        ],
+        "acs_odu_product": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_odu_pcg_manufacturer_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_odu_model": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "acs_odu_flag_updated_created": [
+            {
+                "constraint": "nullable_fractional",
+                "params": {}
+            }
+        ],
+        "dc_stb_app": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "adc_library_version": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "s1outport": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "s2neid": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "s2outport": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            }
+        ],
+        "s_plan_name": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "no_nulls",
+                "params": {}
+            }
+        ],
+        "s_plan_type": [
+            {
+                "constraint": "nullable_string",
+                "params": {}
+            },
+            {
+                "constraint": "values_are_in_specified_set",
+                "params": {
+                    "value_set": [
+                        "BASEPLAN",
+                        "POSTPAID"
+                    ]
+                }
+            }
+        ],
+        "version_code": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ],
+        "west_side_neighbor_neid": [
+            {
+                "constraint": "nullable_integral",
+                "params": {}
+            }
+        ]
+    },
+    "session_uuid": "636937f9",
+    "csv_filename": "sample_636937f9_20241217_10.csv"
+}
